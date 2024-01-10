@@ -10,11 +10,19 @@ from datetime import datetime
 
 class BaseModel:
     """Class that defines attributes/methods for other classes"""
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Method that initializes attributes"""
-        self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        if kwargs:
+            for k, v in kwargs.items():
+                if k == "__class__":
+                    continue
+                if k in ("created_at, updated_at"):
+                    v = datetime.fromisoformat(v)
+                setattr(self, k, v)
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """Method to format output for print"""
@@ -26,10 +34,8 @@ class BaseModel:
 
     def to_dict(self):
         """Returns a dictionary containing all k/v pairs"""
-        return {
-                "__class__": self.__class__.__name__,
-                "id": self.id,
-                "created_at": self.created_at.isoformat(),
-                "updated_at": self.updated_at.isoformat(),
-                **self.__dict__,
-                }
+        new_dict = self.__dict__.copy()
+        new_dict["__class__"] = self.__class__.__name__
+        new_dict["created_at"] = self.created_at.isoformat()
+        new_dict["updated_at"] = self.updated_at.isoformat()
+        return new_dict
