@@ -30,6 +30,7 @@ class FileStorage:
     def reload(self):
         """Deserialises the JSON file to dictionary"""
         from models.base_model import BaseModel
+        from models.user import User
         try:
             with open(FileStorage.__file_path, "r") as f:
                 json_dict = json.load(f)
