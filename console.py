@@ -13,6 +13,8 @@ from models.base_model import BaseModel
 class HBNBCommand(cmd.Cmd):
     """Class the implements a python command interpreter"""
     prompt = "(hbnb) "
+    CLASSES = ['BaseModle', 'User', 'Place', 'State',
+               'City', 'Amenity', 'Review']
 
     def do_quit(self, arg):
         """Quit command to exit program"""
@@ -32,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
         if not line:
             print("** class name missing **")
             return
-        elif line not in ["BaseModel", "User"]:
+        elif line not in CLASSES:
             print("** class doesn't exist **")
             return
         else:
@@ -47,7 +49,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         args = line.split()
-        if args[0] not in ["BaseModel", "User"]:
+        if args[0] not in CLASSES:
             print("** class doesn't exist **")
             return
         elif len(args) < 2:
@@ -67,7 +69,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         args = line.split()
-        if args[0] not in ["BaseModel", "User"]:
+        if args[0] not in CLASSES:
             print("** class doesn't exist **")
             return
         elif len(args) < 2:
@@ -87,7 +89,7 @@ class HBNBCommand(cmd.Cmd):
         or not on class name"""
         args = line.split()
         instances = storage.all()
-        if not line or args[0] in ["BaseModel", "User"]:
+        if not line or args[0] in CLASSES:
             for instance in instances.values():
                 print(str(instance))
         else:
@@ -99,7 +101,7 @@ class HBNBCommand(cmd.Cmd):
         if not line:
             print("** class name missing **")
             return
-        elif args[0] not in ["BaseModel", "User"]:
+        elif args[0] not in CLASSES:
             print("** class doesn't exist **")
             return
         elif len(args) < 2:
