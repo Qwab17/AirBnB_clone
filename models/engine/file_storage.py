@@ -24,13 +24,18 @@ class FileStorage:
     def save(self):
         """Serializes the dictionary (__objects) to JSON file"""
         with open(FileStorage.__file_path, "w") as f:
-            json_dict = {k: v.to_dict() for k, v in FileStorage.__objects.items()}
-            json.dump(json_dict, f)
+            jn_dct = {k: v.to_dict() for k, v in FileStorage.__objects.items()}
+            json.dump(jn_dct, f)
 
     def reload(self):
         """Deserialises the JSON file to dictionary"""
         from models.base_model import BaseModel
         from models.user import User
+        from models.place import Place
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.review import Review
         try:
             with open(FileStorage.__file_path, "r") as f:
                 json_dict = json.load(f)
