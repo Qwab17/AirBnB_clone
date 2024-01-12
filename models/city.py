@@ -8,6 +8,6 @@ from models.base_model import BaseModel
 
 
 class City(BaseModel):
-    """Class City that inherits from BaseModel class"""
-    state_id = ""
+    """Class City that instantiates city objects"""
+    state_id = ""   # state.id
     name = ""
