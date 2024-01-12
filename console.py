@@ -1,55 +1,101 @@
 #!/usr/bin/python3
 """
-    Module that implements a basic command interpreter
-    entry point
+    Module to implement a python command interpreter
+    using the cmd module
 
 """
 import cmd
+import re
 import shlex
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
-    """Class the implements a python command interpreter"""
+    """Simple command interpreter"""
     prompt = "(hbnb) "
-    CLASSES = ['BaseModle', 'User', 'Place', 'State',
-               'City', 'Amenity', 'Review']
+    cls_dct = {'BaseModel': BaseModel, 'User': User, 'Place': Place,
+               'State': State, 'City': City, 'Amenity': Amenity,
+               'Review': Review
+               }
 
-    def do_quit(self, arg):
+    def precmd(self, line):
+        """preprocesses commands"""
+        pttn = r'(\w+)\.(\w+)\(\)'
+        pttn2 = r'(\w+)\.(\w+)\("([^"]*)"\)'
+        pttn3 = r'(\w+)\.(\w+)\("([^"]*)", "([^"]*)", "([^"]*)"\)'
+        pttn4 = r'(\w+)\.(\w+)\("([^"]*)", \{([^}]*)\}\)'
+        match = re.match(pttn, line)
+        match2 = re.match(pttn2, line)
+        match3 = re.match(pttn3, line)
+        match4 = re.match(pttn4, line)
+        if match:
+            cls_name, cmnd = match.groups()
+            line = f"{cmnd} {cls_name}"
+        elif match2:
+            cls_name, cmnd, arg = match2.groups()
+            line = f"{cmnd} {cls_name} {arg}"
+        elif match3:
+            cls_name, cmnd, id, attr_n, attr_v = match3.groups()
+            line = f"{cmnd} {cls_name} {id} {attr_n} {attr_v}"
+        elif match4:
+            cls_name, cmnd, id, dct = match4.groups()
+            line = f"{cmnd} {cls_name} {id} {dct}"
+        return line
+
+    def do_count(self, line):
+        """Count counts instances by class name"""
+        num = 0
+        instances = storage.all()
+        for k, v in instances.items():
+            lst = k.split('.')
+            if lst[0] == line:
+                num += 1
+        print(num)
+
+    def do_quit(self, line):
         """Quit command to exit program"""
         return True
 
-    def do_EOF(self, arg):
-        """Ctrl + D to exit program"""
+    def do_EOF(self, line):
+        """Handle EOF character - ctrl+D to quit"""
         print()
         return True
 
+    def help_help(self):
+        """Prints help command description"""
+        print("Provides command description")
+
     def emptyline(self):
-        """Prints an empty line"""
+        """Prints nothing to the console"""
         pass
 
     def do_create(self, line):
-        """Creates a new instance of BaseModel."""
+        """create command to create new instance"""
         if not line:
             print("** class name missing **")
             return
-        elif line not in CLASSES:
+        elif line not in HBNBCommand.cls_dct:
             print("** class doesn't exist **")
             return
         else:
-            new_instance = BaseModel()
-            new_instance.save()
-            print(new_instance.id)
+            instance = cls_dict[line]()
+            print(instance.id)
+            instance.save()
 
     def do_show(self, line):
-        """Prints string representation of an instance
-        by class name and id"""
+        """Prints string representation of an instance"""
+        args = line.split()
         if not line:
             print("** class name missing **")
             return
-        args = line.split()
-        if args[0] not in CLASSES:
+        elif args[0] not in HBNBCommand.cls_dct:
             print("** class doesn't exist **")
             return
         elif len(args) < 2:
@@ -64,12 +110,12 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_destroy(self, line):
-        """Deletes an instance based on the class namd and id"""
+        """Deletes an instance base on class name and id"""
+        args = line.split()
         if not line:
             print("** class name missing **")
             return
-        args = line.split()
-        if args[0] not in CLASSES:
+        elif args[0] not in HBNBCommand.cls_dct:
             print("** class doesn't exist **")
             return
         elif len(args) < 2:
@@ -80,28 +126,28 @@ class HBNBCommand(cmd.Cmd):
             key = f"{args[0]}.{args[1]}"
             if key in instances:
                 del instances[key]
-                storage.save()
+                storage.save
             else:
                 print("** no instance found **")
 
     def do_all(self, line):
-        """Prints all string representation of all instances based
-        or not on class name"""
-        args = line.split()
+        """Prints all string representation of instances
+        based or not on the classname"""
         instances = storage.all()
-        if not line or args[0] in CLASSES:
+        args = line.split()
+        if args[0] in HBNBCommand.cls_dct:
             for instance in instances.values():
                 print(str(instance))
         else:
             print("** class doesn't exist **")
 
     def do_update(self, line):
-        """Updates an instance based on class name and id"""
-        args = shlex.split()
+        """Updates instances based on class name and id"""
+        args = shlex.split(line)
         if not line:
             print("** class name missing **")
             return
-        elif args[0] not in CLASSES:
+        elif args[0] not in HBNBCommand.cls_dct:
             print("** class doesn't exist **")
             return
         elif len(args) < 2:
@@ -129,10 +175,10 @@ class HBNBCommand(cmd.Cmd):
                     except (SyntaxError, NameError):
                         setattr(instance, args[2], args[3])
                         instance.save()
-                    else:
-                        print("** attribute can't be updated **")
                 else:
-                    print("** no instance fount **")
+                    print("** attribute can't be updated **")
+            else:
+                print("** no instance found **")
 
 
 if __name__ == "__main__":
