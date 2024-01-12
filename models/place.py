@@ -1,22 +1,22 @@
 #!/usr/bin/python3
 """
-    Module with class Place, that inherits from
-    BaseModel, base class
+    Module to implement class Place, that inherits
+    from base class BaseModel
 
 """
 from models.base_model import BaseModel
 
 
 class Place(BaseModel):
-    """Class Place that inherits from BaseModel class"""
-    city_id = ""
-    user_id = ""
+    """class Place that instantiates place instances"""
+    city_id = ""   # city.id
+    user_id = ""   # user.id
     name = ""
     description = ""
     number_rooms = 0
     number_bathrooms = 0
     max_guest = 0
     price_by_night = 0
-    latitude = 0.0
+    lattitude = 0.0
     longitude = 0.0
-    amenity_ids = []
+    amenity_id = []   # empty list to be filled
