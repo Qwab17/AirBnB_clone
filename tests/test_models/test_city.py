@@ -22,26 +22,26 @@ class TestCity(unittest.TestCase):
         """Test the save method"""
         old_update = self.city.updated_at
         self.city.save()
-        self.assertNotTrue(old_update, self.city.updated_at)
+        self.assertNotEqual(old_update, self.city.updated_at)
 
     def test_dictionary_keys(self):
         """Test keys from to_dict() method"""
         city_dct = self.city.to_dict()
-        selt.assertIn('state_id', city_dct)
-        selt.assertIn('name', city_dct)
-        selt.assertIn('__class__', city_dct)
-        selt.assertIn('id', city_dct)
-        selt.assertIn('created_at', city_dct)
-        selt.assertIn('updated_at', city_dct)
+        self.assertIn('state_id', city_dct)
+        self.assertIn('name', city_dct)
+        self.assertIn('__class__', city_dct)
+        self.assertIn('id', city_dct)
+        self.assertIn('created_at', city_dct)
+        self.assertIn('updated_at', city_dct)
 
     def test_attributes(self):
         """Test instance attributes"""
-        self.assertTrue(hasattr(self.city), 'state_id')
-        self.assertTrue(hasattr(self.city), 'name')
-        self.assertTrue(hasattr(self.city), '__class__')
-        self.assertTrue(hasattr(self.city), 'id')
-        self.assertTrue(hasattr(self.city), 'created_at')
-        self.assertTrue(hasattr(self.city), 'updated_at')
+        self.assertTrue(hasattr(self.city, 'state_id'))
+        self.assertTrue(hasattr(self.city, 'name'))
+        self.assertTrue(hasattr(self.city, '__class__'))
+        self.assertTrue(hasattr(self.city, 'id'))
+        self.assertTrue(hasattr(self.city, 'created_at'))
+        self.assertTrue(hasattr(self.city, 'updated_at'))
         self.assertEqual(self.city.state_id, "")
         self.assertEqual(self.city.name, "")
 

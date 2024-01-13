@@ -17,15 +17,15 @@ class TestBaseModel(unittest.TestCase):
         instance = BaseModel()
         self.assertIsInstance(instance, BaseModel)
         self.assertIsInstance(instance.id, str)
-        self.assertIsInstance(instance_created_at, datetime)
-        self.assertIsInstance(instance_updated_at, datetime)
-        self.assertEqual(instance.created_at, isntance.updated_at)
+        self.assertIsInstance(instance.created_at, datetime)
+        self.assertIsInstance(instance.updated_at, datetime)
+        self.assertNotEqual(instance.created_at, instance.updated_at)
 
     def test_str_representation(self):
         """Test for the string formatting method"""
         inst = BaseModel()
         expected_str = f"[BaseModel] ({inst.id}) {inst.__dict__}"
-        self.assertEqual(instance.__str__(), expected_str)
+        self.assertEqual(inst.__str__(), expected_str)
 
     def test_save(self):
         """Test the save method for all instances"""

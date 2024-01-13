@@ -9,7 +9,7 @@ from datetime import datetime
 from models.review import Review
 
 
-class TestReview(TestCase):
+class TestReview(unittest.TestCase):
     """Class implementing Review test cases"""
     def test_instance(self):
         """Test instance of attributes"""
@@ -18,7 +18,7 @@ class TestReview(TestCase):
         self.assertIsInstance(review.place_id, str)
         self.assertIsInstance(review.user_id, str)
         self.assertIsInstance(review.text, str)
-        self.assertIsIntance(review.id, str)
+        self.assertIsInstance(review.id, str)
         self.assertIsInstance(review.created_at, datetime)
         self.assertIsInstance(review.updated_at, datetime)
 
@@ -35,7 +35,7 @@ class TestReview(TestCase):
     def test_str_representation(self):
         """Test the __str__ method on Review"""
         review = Review()
-        expected_str = f"[Review] ({state.id}) {state.__dict__}"
+        expected_str = f"[Review] ({review.id}) {review.__dict__}"
         self.assertEqual(review.__str__(), expected_str)
 
 

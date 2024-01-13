@@ -14,7 +14,7 @@ class TestAmenity(unittest.TestCase):
     def test_instance(self):
         """Test attribute instances"""
         amenity = Amenity()
-        self.assertIsInstance(amenity, State)
+        self.assertIsInstance(amenity, Amenity)
         self.assertIsInstance(amenity.id, str)
         self.assertIsInstance(amenity.created_at, datetime)
         self.assertIsInstance(amenity.updated_at, datetime)
