@@ -8,6 +8,7 @@ from uuid import uuid4
 from datetime import datetime
 from models import storage
 
+
 class BaseModel():
     """Class that defines attributes/methods for other classes"""
     def __init__(self, *args, **kwargs):
