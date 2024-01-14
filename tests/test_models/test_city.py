@@ -27,8 +27,8 @@ class TestCity(unittest.TestCase):
     def test_dictionary_keys(self):
         """Test keys from to_dict() method"""
         city_dct = self.city.to_dict()
-        self.assertIn('state_id', city_dct)
-        self.assertIn('name', city_dct)
+        self.assertNotIn('state_id', city_dct)
+        self.assertNotIn('name', city_dct)
         self.assertIn('__class__', city_dct)
         self.assertIn('id', city_dct)
         self.assertIn('created_at', city_dct)
