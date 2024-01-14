@@ -3,27 +3,27 @@ The AirBnB project is a project to implement a full web application that mimics 
 
 ## The Console
 The console is the first step towards building our first full web application: the AirBnB clone.  
-The very first step is involved and is important because it laid the foundation for subsequent projects:
-	- HTML/CSS templatinig
-	- Database storage
-	- API
+The very first step is involved and is important because it laid the foundation for subsequent projects:  
+	- HTML/CSS templatinig  
+	- Database storage  
+	- API  
 	- Front-end integration
 ## The Command Interpreter
 For the console project, the major part was building a command interpreter. You think of this like a mini-shell implmented within python, using python's cmd module.  
-This interpreter is to be used to manage objects for the project - implementing CRUD.
-	- Create a new 
-	- Retrieve an object from file
-	- Update object attributes
-	- Destroy an object
+This interpreter is to be used to manage objects for the project - implementing CRUD.  
+	- Create a new   
+	- Retrieve an object from file  
+	- Update object attributes  
+	- Destroy an object  
 	- Do operations on the data saved
 #### How to start the interpreter
 Running the interpreter is straight forward. Look for the file name 'console.py' in the directory. It is already executable.   
 ./console.py or python3 console.py should start the interpreter for you.
 
 #### How to use it
-The interpreter comes with a 'help' command that provides information about every other command implemented. When you prompt is displayed :  
-	- prompt: help + ENTER - prints information and all commands avialble
-	- prompt: help <command> - prints information about the command
+The interpreter comes with a 'help' command that provides information about every other command implemented. When you prompt is displayed :    
+	- prompt: help + ENTER - prints information and all commands avialble  
+	- prompt: help <command> - prints information about the command  
 	- prompt: <command> <argument> - runs command on given argument
 
 #### Examples
@@ -38,9 +38,9 @@ Explore ....
 To build this part of the project; AirBnB clone, the project was broken into tasks. The different tasks when implemented, together resulted to an amazing piece of work.
 
 ### Note:
-Tasks 0 to 2 involved good practices requirements
-	- Writing this README as well as AUTHORS file
-	- Ensuring my python3 code compplies with pycodestyl
+Tasks 0 to 2 involved good practices requirements  
+	- Writing this README as well as AUTHORS file  
+	- Ensuring my python3 code compplies with pycodestyl  
 	- Writing test cases for the entire project
 
 ### Task 3: BaseModel
@@ -56,11 +56,11 @@ We implemented FileStorage class to handle the process explained above.
 
 ### Tasks 6 and 7: Console
 Here we started the implemetation of the command interpreter. At this stage the interpreter is able to handle basic commands.  
-All of these commands have to do with class instances:
-	- creating an instance
-	- reading from file
-	- updating instances
-	- destroying instances
+All of these commands have to do with class instances:  
+	- creating an instance  
+	- reading from file  
+	- updating instances  
+	- destroying instances  
 	- printing instances etc
 
 ### Tasks 8 and 9: User and more classes
