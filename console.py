@@ -85,7 +85,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
         else:
-            instance = cls_dict[line]()
+            instance = HBNBCommand.cls_dct[line]()
             print(instance.id)
             instance.save()
 
