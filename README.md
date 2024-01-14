@@ -1,5 +1,5 @@
 # 0x00. AirBnB clone
-This the beginning part of our team project to develop a clone copy of the AirBnB website. In this part, we've created a backend interface, like a control panel, to handle program information. With commands in the control panel, users can make, modify, or remove things and handle file storage. We use a system called JSON to keep data saved even when you close and reopen the program.
+This is the beginning part of our team project to develop a clone copy of the AirBnB website. In this part, we've created a backend interface, like a control panel, to handle program information. With commands in the control panel, users can make, modify, or remove things and handle file storage. We use a system called JSON to keep data saved even when you close and reopen the program.
 
 The AirBnB project is a project to implement a full web application that mimics the AirBnB web application. This is no a 100% replica of the site but an implementation with fundamental functions. The aim was to provide us the students with a learning opportunity to grasp fundamental concepts.  
 
