@@ -1,16 +1,9 @@
 header {
-    background-color: white;
+    background-color: #fff;
     height: 70px;
     width: 100%;
     border-bottom: 1px solid #CCCCCC;
-}
-
-header div.logo {
-    height: 70px;
-    width: 20%;
-    margin-left: 20px;
-    margin-top: 10px;
-    background-color: white;
     background-image: url("../images/logo.png");
     background-repeat: no-repeat;
+    background-position: 20px center;
 }
