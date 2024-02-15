@@ -1,1 +1,1 @@
-Web static Html CSS Front-end
+AirBnB clone - Web static
